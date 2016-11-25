@@ -1,0 +1,18 @@
+<p>
+	<strong>Name:</strong>
+	<%=@account.name%>
+</p>
+
+<p>
+	<strong>Email:</strong>
+	<%=@account.email%>
+</p>
+
+<p>
+	<strong>Confirm Email:</strong>
+	<%=@account.email_confirmation%>
+</p>
+
+
+<%= link_to 'Edit', edit_account_path(@account) %>
+<%= link_to 'Back', accounts_path %>
