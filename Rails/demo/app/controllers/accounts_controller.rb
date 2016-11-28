@@ -1,11 +1,18 @@
 class AccountsController < ApplicationController
-	
+	def index
+		@accounts = Account.all
+	end
+
 	def show
 		@account = Account.find(params[:id])
 	end
 
 	def new
 		@account = Account.new
+	end
+
+	def edit
+		@account = Account.find(params[:id])
 	end
 
 	def create
@@ -16,6 +23,23 @@ class AccountsController < ApplicationController
 		else
 			render 'new'
 		end
+	end
+
+	def update
+		@account = Account.find(params[:id])
+
+		if @account.update(account_params)
+			redirect_to @account
+		else
+			render 'edit'
+		end
+	end
+
+	def destroy
+		@account = Account.find(params[:id])
+		@account.destroy
+		
+		redirect_to accounts_path
 	end
 
 	private

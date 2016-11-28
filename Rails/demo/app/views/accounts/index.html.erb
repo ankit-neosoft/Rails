@@ -1,2 +1,27 @@
 <h1>Listing Accounts</h1>
 <%= link_to 'Add account', new_account_path%>
+
+
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		
+		<th>Need estatement</th>
+		<th colspan="2"></th>
+	</tr>
+
+	<% @accounts.each do |account| %>
+	<tr>
+		<td><%=account.name%></td>
+		<td><%=account.email%></td>
+		
+		<td><%=account.need_estatement%></td>
+		<td><%= link_to 'Show', account_path(account)%></td>
+		<td><%= link_to 'Edit', edit_account_path(account)%></td>
+		<td><%= link_to 'Destroy', account_path(account),
+					method: :delete,
+					data: {confirm: 'Are you sure?'}%></td>
+	</tr>
+	<% end %>
+</table>

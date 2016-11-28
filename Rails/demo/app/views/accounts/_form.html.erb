@@ -1,0 +1,45 @@
+<%= form_for :account, url: accounts_path do |a| %>
+<%#binding.pry%>
+<% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@account.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @account.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+<p>
+	<%=a.label :name %><br>
+	<%= a.text_field :name%>
+</p>
+
+<p>
+	<%=a.label :email%><br>
+	<%= a.email_field :email%>
+</p>
+<p>
+	<%=a.label :confirm_Email%><br>
+	<%= a.email_field :email_confirmation%>
+</p>
+
+<p>
+  <%= a.label :need_estatement%><br>
+  <%=a.text_field :need_estatement%>
+</p>
+
+<p>
+	<%= a.check_box :terms_of_service %>Accept terms and condition
+</p>
+
+<p>
+	<%= a.submit %>
+</p>
+<% end %>
