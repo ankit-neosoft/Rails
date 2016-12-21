@@ -1,0 +1,35 @@
+<div class="container">
+
+  <% if current_user %>
+    <div class="col-sm-6">
+      <h1>Your Twitter Profile</h1>  
+      <img class="avatar" src="">
+      <span class="name"><b><%= @user.name %></b></span> @<%= @user.username %>
+      <p>
+        <%= @user.posts.size %> Tweets
+        <span class="spacing">XX Followers</span>
+        <span class="spacing">XX Following</span>
+      </p>
+
+      <h1>Your Tweets</h1>
+      <% @user.posts.each do |tweet| %>  
+        <img class="avatar" src="">
+        <span class="name"><b><%= @user.name %></b></span> 
+        <small>@<%= @user.username %> 
+        <span class="time"><%= time_ago_in_words(tweet.created_at) %> ago</span></small>
+        <p> <%= tweet.content %> </p>    
+      <% end %>
+
+    </div>
+  <% end %>
+   
+  <div class="col-sm-6">
+    <h1>Create a Tweet</h1>
+    <p>
+    <%= form_for @post do |f| %>
+        <%= f.text_area :content %>
+        <%= f.submit "Tweet!" %>
+    <% end %>
+    </p>
+  </div>
+</div>
