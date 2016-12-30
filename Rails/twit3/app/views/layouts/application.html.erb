@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twit1</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+ <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+	      <div class="col-sm-1" >
+	      <%=image_tag("logo.png", height: '50', width: '50') %>
+	      </div>
+
+      	<div class="col-sm-4" class="page-header">
+        <h4><%= link_to "Twitter App", root_path %></h4>
+      	</div>
+
+      	<div class="col-sm-5">
+      		<nav>
+            <ul class="nav navbar-nav navbar-right ">
+              <% if user_signed_in? %>
+  							<li><%= link_to "My profile", user_path(current_user)%></li>
+  							<li><%= link_to "Edit profile", edit_user_registration_path %></li>
+  							<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+  							<li class="round-image-50"><%= image_tag(current_user.avatar.url(:thumb), class: "thumb-image") %></li>
+  						<% else %>
+  	            <li><%= link_to "Log in", new_user_session_path %></li>
+  	           	<li><%= link_to "Sign up", new_user_registration_path %></li>
+              <% end %>
+            </ul>
+          </nav>
+      	</div>  
+      </div>
+    </header>
+    <div class="container-fluid">
+      
+      <%= yield %>
+    </div>
+  </body>
+</html>

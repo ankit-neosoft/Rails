@@ -1,0 +1,34 @@
+<div class="container">
+  <%= render '/components/sidebar_right'%>
+  <div class="col-sm-6">
+  	<div class="body-card">
+  		<%= render '/components/create_tweet'%>
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+		    	<h2>Public Tweets</h2>
+		  	</div>
+		  	<div>
+			    <ul class="list-group">
+			      <% @posts.each do |tweet| %>  
+			    		<li class="list-group-item">
+				        <% if tweet.user %>
+				        <%binding.pry%>
+				          <b><%= link_to tweet.user.name, user_path(tweet.user) %></b>
+				          <small>@<%= tweet.user.username %> 
+				          <%= time_ago_in_words(tweet.created_at) %></small>
+				          <p> <%= tweet.content %> </p>
+				          <% if current_user.present? && tweet.user_id == current_user.id %>
+				            <%= link_to 'Delete', user_path(tweet.id),
+				             method: :delete,
+				             data: { confirm: 'Are you sure?' } %> 
+				          <%end%>
+				          <%= link_to 'Retweet' %> 
+				        <% end %>
+				      </li>
+			      <% end %>
+			    </ul>
+			  </div>
+		  </div>
+	  </div>
+  </div>
+</div>
