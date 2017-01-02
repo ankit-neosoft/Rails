@@ -1,0 +1,44 @@
+<div class="container">
+  <%= render '/components/sidebar_right'%>
+  <div class="col-sm-6">
+    <div class="body-card">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h2>Your Retweet</h2>
+        </div>
+        <div>
+          <ul class="list-group">
+            <li class="list-group-item">
+              <% if @retweet.user %>
+                <b><%= link_to @retweet.user.name, user_path(@retweet.user) %></b>
+                <small>@<%= @retweet.user.username %> 
+                <%= time_ago_in_words(@retweet.created_at) %></small>
+                <p> <%= @retweet.content %> </p>
+                <% if current_user.present? && @retweet.user_id == current_user.id %>
+                  <%= link_to 'Delete', user_path(@retweet.id),
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' } %> 
+                  <%= link_to 'Retweet',new_retweet_path(retweet_id: @retweet)%>
+                <% end %>
+              <% end %>
+              <div class="tweet-card">
+                <% if @retweet.user %>
+                <b><%= link_to @post.user.name, user_path(@post.user) %></b>
+                <small>@<%= @post.user.username %> 
+                <%= time_ago_in_words(@post.created_at) %></small>
+                <p> <%= @post.content %> </p>
+                  <% if current_user.present? && @post.user_id == current_user.id %>
+                    <%= link_to 'Delete', user_path(@post.id),
+                     method: :delete,
+                     data: { confirm: 'Are you sure?' } %> 
+                    <%= link_to 'Retweet',new_retweet_path(retweet_id: @post)%>
+                  <% end %>
+                <% end %>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

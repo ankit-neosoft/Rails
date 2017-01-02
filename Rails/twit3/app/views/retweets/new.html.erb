@@ -1,0 +1,14 @@
+<div class="container">
+  <%= render '/components/sidebar_right'%>
+  <div class="col-sm-6">
+    <div class="body-card">
+      <%= render '/components/create_retweet'%>
+      <div >
+            <b><%= link_to @post.user.name, user_path(@post.user) %></b>
+            <small>@<%= @post.user.username %> 
+            <%= time_ago_in_words(@post.created_at) %></small>
+            <p> <%= @post.content %> </p>
+      </div>
+    </div>
+  </div>
+</div>

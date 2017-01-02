@@ -12,17 +12,29 @@
 			      <% @posts.each do |tweet| %>  
 			    		<li class="list-group-item">
 				        <% if tweet.user %>
-				        <%binding.pry%>
 				          <b><%= link_to tweet.user.name, user_path(tweet.user) %></b>
 				          <small>@<%= tweet.user.username %> 
 				          <%= time_ago_in_words(tweet.created_at) %></small>
 				          <p> <%= tweet.content %> </p>
+
+				          <div class="tweet-card">
+						        <% parent_tweet = tweet.parent %>
+						        <% if parent_tweet.present? %>
+			                <b><%= link_to parent_tweet.user.name, user_path(parent_tweet.user) %></b>
+			                <small>@<%= parent_tweet.user.username %> 
+			                <%= time_ago_in_words(parent_tweet.created_at) %></small>
+			                <p> <%= parent_tweet.content %> </p>
+			              <% end %>
+              		</div>
+
 				          <% if current_user.present? && tweet.user_id == current_user.id %>
-				            <%= link_to 'Delete', user_path(tweet.id),
+				            <%= link_to 'Delete', user_path(tweet.id),class: 'glyphicon glyphicon-trash',
 				             method: :delete,
-				             data: { confirm: 'Are you sure?' } %> 
+				             data: { confirm: 'Are you sure?' } %> &nbsp; |
 				          <%end%>
-				          <%= link_to 'Retweet' %> 
+				          <%= link_to 'Retweet ',new_retweet_path(retweet_id: tweet),class: 'glyphicon glyphicon-retweet'%> 
+				          <%= link_to tweet.retweets.count %> |
+				          <%= link_to 'Reply',post_path(tweet)%> 
 				        <% end %>
 				      </li>
 			      <% end %>

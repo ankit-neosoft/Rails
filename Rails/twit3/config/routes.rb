@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get 'users/show'
   get 'users/picture'
   devise_for :users 
@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   end
 
   resources :users 
-  resources :posts
+  resources :posts do 
+    resources :comments
+  end
+  resources :retweets
   resources :relationships
  root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
