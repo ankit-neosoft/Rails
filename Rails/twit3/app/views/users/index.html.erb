@@ -1,10 +1,9 @@
 <div class="container">
   <%= render '/components/sidebar_right'%>
-  <div class="col-sm-6">
-    <div class="body-card">
-      <div class="panel panel-danger">
-        <div class="panel-heading">
-          <h1>All users</h1>
+  <div class="col-sm-7">
+      <div class="panel panel-info">
+        <div class="panel-heading ">
+          <h3 class="panel-title">All users</h3>
         </div>
         <div>
           <ul class="list-group">
@@ -13,7 +12,7 @@
               <table style="width:100%">
                 <tr>
                   <th rowspan="2"><%= image_tag(user.avatar.url(:thumb), width: 100, height: 100) %></th>
-                  <td colspan = "2"><b><%= link_to user.name, post_path(user) %></b>
+                  <td colspan = "2"><b><%= link_to user.name, user_path(user) %></b>
                   <small>@<%= user.username %> <br></small></td>
                 </tr>
                 <tr>
@@ -25,6 +24,6 @@
             <% end %>
           </ul>
         </div>
+        <%= will_paginate @users %>
       </div>
-  </div>
 </div>

@@ -1,14 +1,14 @@
 <div class="container">
   <%= render '/components/sidebar_right'%>
   <div class="col-sm-6">
-    <div class="body-card">
-      <div class="panel panel-danger">
-        <div class="panel-heading">
-          <h3><%= @user.name %>'s tweets</h3>
+      <div class="panel panel-info margin-bottom-zero">
+        <div class="panel-heading ">
+          <h3 class="panel-title"><%= @user.name %>'s tweets</h3>
         </div>
-        <div>
-          <ul class="List-group">
-            <li>
+        <div class="panel-body">
+        <!--
+          <ul class="list-group margin-bottom-zero">
+            <li class="list-group-item" style="list-style:none"> -->
               <b><%= link_to @user.name%></b>
               <small>@<%= @user.name%>
                 <%= time_ago_in_words(@post.created_at) %>
@@ -20,9 +20,37 @@
               data: {confirm: 'Are you sure?'} %>
               <% end %>
               <%= link_to 'Retweet', post_path%>
+              <!--
             </li>
-          </ul>
+          </ul> -->
         </div>
+      </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+          <h3 class="panel-title">Comments</h3>
+      </div>
+      <div>
+       <!-- <ul> -->
+          <% @post.comments.each do |comment| %>
+          <% @user = comment.user%>
+            <% if @user %>
+            <!--  <li class="list-group-item list-style"> -->
+              
+                <b><%= link_to @user.name, user_path(@user) %></b>
+                <small>@<%= @user.username %> 
+                <%= time_ago_in_words(comment.created_at) %></small>
+                <p> <%= comment.body %> </p>
+                <%= link_to 'Delete', [comment.post, comment], 
+                method: :delete,
+                data: {confirm: 'Are you sure?'}%>
+              </li>
+            <% end %>
+          <% end %>
+          <li style="list-style:none">
+            <%= render '/components/create_comment'%>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

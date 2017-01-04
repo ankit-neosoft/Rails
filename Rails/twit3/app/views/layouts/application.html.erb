@@ -7,31 +7,46 @@
   <%= csrf_meta_tags %>
 </head>
  <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <header class="navbar navbar-fixed-top navbar-dark bg-primary">
       <div class="container">
-	      <div class="col-sm-1" >
-	      <%=image_tag("logo.png", height: '50', width: '50') %>
-	      </div>
+        <div class="col-md-12">
+  	      <div class="col-md-6" >
+  	        <%=image_tag("twitter-logo3.png", height: '50', width: '50') %>
+            <span><%= link_to "Twitter App", root_path, class:"header-title" %></span>
+  	      </div>
 
-      	<div class="col-sm-4" class="page-header">
-        <h4><%= link_to "Twitter App", root_path %></h4>
-      	</div>
+        	<!-- <div class="col-sm-1" class="page-header"> -->
+            <!-- <span><%#= link_to "Twitter App", root_path, class:"header-title" %></span> -->
+        	<!-- </div> -->
 
-      	<div class="col-sm-5">
-      		<nav>
-            <ul class="nav navbar-nav navbar-right ">
-              <% if user_signed_in? %>
-  							<li><%= link_to "My profile", user_path(current_user)%></li>
-  							<li><%= link_to "Edit profile", edit_user_registration_path %></li>
-  							<li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-  							<li class="round-image-50"><%= image_tag(current_user.avatar.url(:thumb), class: "thumb-image") %></li>
-  						<% else %>
-  	            <li><%= link_to "Log in", new_user_session_path %></li>
-  	           	<li><%= link_to "Sign up", new_user_registration_path %></li>
-              <% end %>
-            </ul>
-          </nav>
-      	</div>  
+        	<div class="col-md-5">
+            <% if user_signed_in? %>
+            <div class="dropdown pull-right">
+              <span class=" dropdown-toggle dropdown-custom" type="button" " data-toggle="dropdown"><%= image_tag(current_user.avatar.url(:thumb), class: "thumb-image round-image-50") %>
+              </span>
+                <ul class="dropdown-menu">
+    							<li><%= link_to  user_path(current_user),class:"header-text glyphicon glyphicon-user spacing" do %>
+                    <span class="spacing">My profile</span>
+                    <% end %>
+                  </li>
+    							<li><%= link_to  edit_user_registration_path,class:"header-text glyphicon glyphicon-edit spacing" do %>
+                    <span class="spacing">Edit profile</span> 
+                    <% end %>      
+                  </li>
+    							<li><%= link_to  destroy_user_session_path, method: :delete,class: "header-text glyphicon glyphicon-log-out spacing" do %>
+                    <span class="spacing">Sign Out</span>
+                    <% end %>       
+                  </li>
+                </ul>
+            </div>
+            <% else %>
+              <ul>
+                <li><%= link_to "Log in", new_user_session_path,class:"header-text" %></li>
+                <li><%= link_to "Sign up", new_user_registration_path,class:"header-text" %></li>
+              </ul>
+            <% end %>
+        	</div>  
+        </div>
       </div>
     </header>
     <div class="container-fluid">

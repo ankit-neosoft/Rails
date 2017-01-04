@@ -1,0 +1,11 @@
+<div class="panel panel-danger">
+  <div class="panel-body">
+    <p>
+    <%= form_for([@post, @post.comments.build]) do |f| %>
+      <%= f.text_area :body, class: 'form-control' %><br>
+      <%#= f.hidden_field :retweet_id, value: @post.id %>
+      <%= f.submit "Comment" , class: 'btn btn-primary' %>
+    <% end %>
+    </p>
+  </div>
+</div>

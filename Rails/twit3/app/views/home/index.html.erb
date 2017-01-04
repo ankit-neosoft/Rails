@@ -1,11 +1,10 @@
 <div class="container">
   <%= render '/components/sidebar_right'%>
-  <div class="col-sm-6">
-  	<div class="body-card">
+  <div class="col-sm-8">
   		<%= render '/components/create_tweet'%>
-			<div class="panel panel-danger">
+			<div class="panel panel-info">
 				<div class="panel-heading">
-		    	<h2>Public Tweets</h2>
+		    	<h3 class="panel-title">Public Tweets</h3>
 		  	</div>
 		  	<div>
 			    <ul class="list-group">
@@ -16,31 +15,43 @@
 				          <small>@<%= tweet.user.username %> 
 				          <%= time_ago_in_words(tweet.created_at) %></small>
 				          <p> <%= tweet.content %> </p>
-
-				          <div class="tweet-card">
+				          <div id="task-form-<%= tweet.id %>" class="hidden"></div>
 						        <% parent_tweet = tweet.parent %>
 						        <% if parent_tweet.present? %>
-			                <b><%= link_to parent_tweet.user.name, user_path(parent_tweet.user) %></b>
-			                <small>@<%= parent_tweet.user.username %> 
-			                <%= time_ago_in_words(parent_tweet.created_at) %></small>
-			                <p> <%= parent_tweet.content %> </p>
+				          		<div class="tweet-card">
+				                <b><%= link_to parent_tweet.user.name, user_path(parent_tweet.user) %></b>
+				                <small>@<%= parent_tweet.user.username %> 
+				                <%= time_ago_in_words(parent_tweet.created_at) %></small>
+				                <p> <%= parent_tweet.content %> </p>
+              				</div>
 			              <% end %>
-              		</div>
 
-				          <% if current_user.present? && tweet.user_id == current_user.id %>
-				            <%= link_to 'Delete', user_path(tweet.id),class: 'glyphicon glyphicon-trash',
-				             method: :delete,
-				             data: { confirm: 'Are you sure?' } %> &nbsp; |
-				          <%end%>
-				          <%= link_to 'Retweet ',new_retweet_path(retweet_id: tweet),class: 'glyphicon glyphicon-retweet'%> 
-				          <%= link_to tweet.retweets.count %> |
-				          <%= link_to 'Reply',post_path(tweet)%> 
+				          <div class="btn-group" role="group">
+								  	<% if current_user.present? && tweet.user_id == current_user.id %>
+								  		<button type="button" class="btn btn-default">
+					            	<%= link_to '', user_path(tweet.id),class: 'btn btn-danger btn-xs glyphicon glyphicon-trash',title: "Delete",
+					             	method: :delete,
+					            	 data: { confirm: 'Are you sure?' } %> &nbsp;
+								 		 	</button>
+				          	<%end%>
+
+										  <button type="button" class="btn btn-default">
+										  	<%= link_to '',new_retweet_path(retweet_id: tweet), id: 'task-#{tweet.id}',class: 'btn btn-success btn-xs glyphicon glyphicon-retweet',title: "Retweet", remote: true%> 
+						         		<%= link_to tweet.retweets.count %>
+										  </button>
+
+										  <button type="button" class="btn btn-default">
+										  	<%= link_to '',post_path(tweet),class: 'btn btn-default btn-xs glyphicon glyphicon-comment', title: "Comment"%>
+						          	<%= link_to tweet.comments.count %>
+										  </button>
+									</div>
 				        <% end %>
 				      </li>
 			      <% end %>
 			    </ul>
+			    <%= will_paginate @posts %>
+			    
 			  </div>
 		  </div>
-	  </div>
   </div>
 </div>

@@ -1,10 +1,7 @@
 <div class="panel panel-danger">
-  <div class="panel-heading">
-    <h2>Create a Tweet</h2>
-  </div>
   <div class="panel-body">
     <p>
-    <%= form_for(@retweet, url: retweets_path(retweet_id: @post.id)) do |f| %>
+    <%= form_for(@retweet, url: retweets_path(retweet_id: @post.id), remote: true) do |f| %>
       <%= f.text_area :content, class: 'form-control' %><br>
       <%#= f.hidden_field :retweet_id, value: @post.id %>
       <%= f.submit "Retweet!" , class: 'btn btn-primary' %>
