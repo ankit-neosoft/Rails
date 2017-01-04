@@ -1,3 +1,7 @@
 $('#task-form-<%= @post.id %>').html("<%= j (render '/components/create_retweet') %>")
 $('#task-form-<%= @post.id %>').removeClass('hidden')
 
+
+$(document).click(function() {
+  $("div[id^='task-form-'").addClass('hidden');
+});

@@ -6,8 +6,8 @@
    
     <%= form_for @post do |f| %>
       <%= f.text_area :content, class: 'form-control' %><br>
+      <%= f.file_field :avatar, title: "Upload Image"%><br>
       <%= f.submit "Tweet!" , class: 'btn btn-primary' %>
-      <%= f.submit "Upload Image!" , class: 'btn ' %>
     <% end %>
     
   </div>

@@ -128,7 +128,7 @@ body {
 .header-title:hover{
  color: white;
  text-decoration: none;
- text-shadow: 2px 2px 4px blue;
+ /*text-shadow: 2px 2px 4px blue; */
 }
 
 .header-text{
@@ -157,3 +157,41 @@ body {
   word-spacing: -10px;
 }
 
+a{
+ text-decoration: none; 
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+.image-resizer{
+  height: 125px;
+  width: 220px;
+}
+
+.image-card{
+  background-color: white;
+  border: 1px solid #e1e8ed;
+  /*max-width: 260px;
+  border-radius: 5px;
+  padding: 5px 5px 5px 5px;
+  margin: 0px 0px 10px 0px; */
+}
+
+.image-background{
+  background-color: lightcyan; 
+ /* border-radius: 100%;*/
+}
+
+.image-round{
+  border-radius: 100%;
+}
+
+.image-bg{
+  border: 1px solid #e1e8ed;
+}
+
+.no-padding{
+  padding: 0px;
+}

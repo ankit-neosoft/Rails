@@ -1,1 +1,9 @@
 $(".a-unique-class").html('<%= j render "posts/_retweet" %>').html_safe
+
+$('#photo-image').html("<%= escape_javascript(render partial: 'components/photo') %>")
+
+$(document).keyup(function(evt) {
+    if (evt.keyCode == 27) {
+        $('#photo-image').html("<%= escape_javascript(render partial: 'components/photo') %>")
+    }
+});

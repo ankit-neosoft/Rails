@@ -1,29 +1,54 @@
 <div class="container">
   <%= render '/components/sidebar_right'%>
-  <div class="col-sm-7">
+  <div class="col-sm-9">
       <div class="panel panel-info">
         <div class="panel-heading ">
           <h3 class="panel-title">All users</h3>
         </div>
-        <div>
-          <ul class="list-group">
-            <% @users.each do |user| %>
-            <li class="list-group-item">  
-              <table style="width:100%">
-                <tr>
-                  <th rowspan="2"><%= image_tag(user.avatar.url(:thumb), width: 100, height: 100) %></th>
-                  <td colspan = "2"><b><%= link_to user.name, user_path(user) %></b>
-                  <small>@<%= user.username %> <br></small></td>
-                </tr>
+        <div class="panel-body">
+        <% @users.each do |user| %>
+          <div class="col-sm-4 no-padding">
+          <div class="image-bg">
+            <center>
+              <div class="image-background">
+                <%= image_tag(user.avatar.url(:medium), width:150, height:150, class:'image-round') %>
+              </div>
+              <p><%= link_to user.name, user_path(user) %> <small>@<%= user.username %> <br></small></p>
+              <table style="width:70%">
                 <tr>
                   <td><%= user.followers.count%> Followers</td>
                   <td><%= user.following.count%>  Following</td>
                 </tr>
               </table>
-            </li>
-            <% end %>
-          </ul>
-        </div>
-        <%= will_paginate @users %>
+            </center>
+          </div>
+          </div>
+        <% end %>
+
+
+
+        <% if false %>
+          <div class="panel-body">
+            <ul class="list-group">
+              <% @users.each do |user| %>
+              <li class="list-group-item">  
+                <table style="width:100%">
+                  <tr>
+                    <th rowspan="2"><%= image_tag(user.avatar.url(:thumb), width: 100, height: 100) %></th>
+                    <td colspan = "2"><b><%= link_to user.name, user_path(user) %></b>
+                    <small>@<%= user.username %> <br></small></td>
+                  </tr>
+                  <tr>
+                    <td><%= user.followers.count%> Followers</td>
+                    <td><%= user.following.count%>  Following</td>
+                  </tr>
+                </table>
+              </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
       </div>
+      <%= will_paginate @users %>
 </div>

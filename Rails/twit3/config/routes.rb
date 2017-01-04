@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   get 'users/show'
-  get 'users/picture'
+  get 'posts/picture'
+  get 'users/followers'
+  get 'users/following'
   devise_for :users 
   resources :users do
     member do

@@ -1,4 +1,6 @@
 class RetweetsController < ApplicationController
+  skip_before_filter  :verify_authenticity_token
+
   def show
     @retweet = Post.find(params[:id])
     @post = Post.find(@retweet.retweet_id)
@@ -17,7 +19,10 @@ class RetweetsController < ApplicationController
     @post = Post.find(params[:retweet_id])
     @retweet = @post.retweets.create(retweet_params)
     @retweet.save
-    redirect_to retweet_path(@retweet)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def destroy
@@ -25,6 +30,6 @@ class RetweetsController < ApplicationController
 
   private
   def retweet_params
-    params.require(:post).permit(:retweet_id, :content).merge(user_id: current_user.id)
+    params.require(:post).permit(:retweet_id, :content, :avatar).merge(user_id: current_user.id)
   end
 end

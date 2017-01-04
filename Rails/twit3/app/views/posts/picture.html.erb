@@ -1,0 +1,19 @@
+<%= render '/components/sidebar_right'%>
+<div class="col-sm-9">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">All Photos</h3>
+    </div>
+    <div class="panel-body">
+      <% current_user.posts.each do |p|%>
+        <% if p.avatar?%>
+          <div class="col-sm-4">
+          <div class="">
+           <%= image_tag p.avatar_url,class:"image-resizer"%>
+          </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

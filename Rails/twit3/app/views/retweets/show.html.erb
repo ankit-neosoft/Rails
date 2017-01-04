@@ -14,6 +14,7 @@
                 <small>@<%= @retweet.user.username %> 
                 <%= time_ago_in_words(@retweet.created_at) %></small>
                 <p> <%= @retweet.content %> </p>
+                <p><%= link_to image_tag @retweet.avatar_url,class:"image-resizer" if @retweet.avatar? %></p>
                 <% if current_user.present? && @retweet.user_id == current_user.id %>
                   <%= link_to 'Delete', user_path(@retweet.id),
                    method: :delete,

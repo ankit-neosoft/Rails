@@ -1,0 +1,41 @@
+<% if tweet.user %>
+  <b><%= link_to tweet.user.name, user_path(tweet.user) %></b>
+  <small>@<%= tweet.user.username %> 
+  <%= time_ago_in_words(tweet.created_at) %></small>
+  <p> <%= tweet.content %> </p>
+  <div id="photo-image">
+    <%= render partial: 'components/photo',locals: {tweet: tweet}%>
+  </div>
+  <div id="task-form-<%= tweet.id %>" class="hidden"></div>
+    <% parent_tweet = tweet.parent %>
+    <% if parent_tweet.present? %>
+      <div class="tweet-card">
+        <b><%= link_to parent_tweet.user.name, user_path(parent_tweet.user) %></b>
+        <small>@<%= parent_tweet.user.username %> 
+        <%= time_ago_in_words(parent_tweet.created_at) %></small>
+        <p> <%= parent_tweet.content %> </p>
+        <p><%= link_to image_tag parent_tweet.avatar_url,class:"image-resizer" if parent_tweet.avatar? %></p>
+      </div>
+    <% end %>
+
+  <div class="btn-group" role="group">
+
+      <button type="button" class="btn btn-default">
+        <%= link_to '',new_retweet_path(retweet_id: tweet), id: 'task-#{tweet.id}',class: 'btn btn-success btn-xs glyphicon glyphicon-retweet',title: "Retweet", remote: true%> 
+        <%= link_to tweet.retweets.count %>
+      </button>
+
+      <button type="button" class="btn btn-default">
+        <%= link_to '',post_path(tweet),class: 'btn btn-default btn-xs glyphicon glyphicon-comment', title: "Comment"%>
+        <%= link_to tweet.comments.count %>
+      </button>
+      
+      <% if current_user.present? && tweet.user_id == current_user.id %>
+        <button type="button" class="btn btn-default">
+          <%= link_to '', user_path(tweet.id),class: 'btn btn-danger btn-xs glyphicon glyphicon-trash',title: "Delete",
+          method: :delete,
+           data: { confirm: 'Are you sure?' } %> &nbsp;
+        </button>
+      <%end%>
+  </div>
+<% end %>

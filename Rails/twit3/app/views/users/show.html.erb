@@ -51,7 +51,7 @@
                 <small>@<%= @user.username %> 
                 <%= time_ago_in_words(tweet.created_at) %></small>
                 <p> <%= tweet.content %> </p>
-
+                <p><%= link_to image_tag tweet.avatar_url,class:"image-resizer" if tweet.avatar? %></p>
                 <div id="task-form-<%= tweet.id %>" class="hidden"></div>
                   <% parent_tweet = tweet.parent %>
                   <% if parent_tweet.present? %>

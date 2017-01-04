@@ -1,0 +1,4 @@
+debugger
+/* $('#task-form-<%= @post.id %>').closest('li').html('<%= j (render partial: "/components/display_tweets", locals: {tweet: @retweet}) %>')
+*/
+$('ul.retweet-list').prepend('<%= j (render partial: "/components/display_tweets", locals: {tweet: @retweet}) %>')

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 		@users = User.all
 		@posts = Post.all
 		@post = Post.new
-		@users = User.paginate(:page => params[:page], :per_page => 5)
+		@users = User.paginate(:page => params[:page], :per_page => 6)
 	end
 
 	def show
@@ -15,9 +15,6 @@ class UsersController < ApplicationController
 		@user = User.find(current_user.id)
 		@post = @user.posts.new(post_params)
 		if @post.save
-			redirect_to post_path(current_user)
-		else
-			flash[:error] = "Problem!"
 			redirect_to post_path(current_user)
 		end
 	end
