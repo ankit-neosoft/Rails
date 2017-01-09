@@ -1,0 +1,70 @@
+<div class="container">
+  <%= render '/components/sidebar_right'%>
+  <div class="col-sm-6">
+      <div class="panel panel-info margin-bottom-zero">
+        <div class="panel-heading ">
+        <% if @user.present?%>
+          <h3 class="panel-title"><%= @user.name %>'s tweets</h3>
+
+        </div>
+        <div class="panel-body">
+        <!--
+          <ul class="list-group margin-bottom-zero">
+            <li class="list-group-item" style="list-style:none"> -->
+              <b><%= link_to @user.name%></b>
+              <small>@<%= @user.name%>
+                <%= time_ago_in_words(@post.created_at) %>
+              </small>
+              <p><%= @post.content%></p>
+              <p><%= link_to image_tag @post.avatar_url,class:"image-resizer" if @post.avatar? %></p>
+              <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">
+                  <%= link_to '', post_path,class: 'btn btn-success btn-xs glyphicon glyphicon-retweet',title: "Retweet"%>
+                </button>
+                <% if current_user.present? && @post.user_id == current_user.id %>
+                  <button type="button" class="btn btn-default">
+                    <%= link_to '', post_path(@post.id),class: 'btn btn-danger btn-xs glyphicon glyphicon-trash',title: "Delete",
+                      method: :delete,
+                      data: {confirm: 'Are you sure?'} %>
+                  </button>
+                <% end %>
+              </div>
+              <!--
+            </li>
+          </ul> -->
+        </div>
+        <% end %>
+      </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+          <h3 class="panel-title">Comments</h3>
+      </div>
+      <div class="panel-body">
+       <!-- <ul> -->
+          <% @post.comments.each do |comment| %>
+          <% @user = comment.user%>
+            <% if @user %>
+          <!--<li class="list-group-item list-style"> -->
+                <b><%= link_to @user.name, user_path(@user) %></b>
+                <small>@<%= @user.username %> 
+                <%= time_ago_in_words(comment.created_at) %></small>
+                <p> <%= comment.body %> </p>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default">
+                    <%= link_to '', [comment.post, comment], class: 'btn btn-danger btn-xs glyphicon glyphicon-trash',title: "Delete",
+                      method: :delete,
+                      data: {confirm: 'Are you sure?'}%>
+                  </button>
+                </div>
+            <!--  </li> -->
+            <% end %>
+          <% end %>
+         <!-- <li style="list-style:none"> -->
+            <%= render '/components/create_comment'%>
+         <!-- </li> -->
+       <!-- </ul> -->
+      </div>
+    </div>
+  </div>
+</div>

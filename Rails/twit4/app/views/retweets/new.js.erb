@@ -1,0 +1,22 @@
+$('#task-form-<%= @post.id %>').html("<%= j (render '/components/create_retweet') %>")
+$('#task-form-<%= @post.id %>').removeClass('hidden')
+
+
+
+
+$(document).ready(function(){
+$(document).on("click","#close-form",function() {
+        $('#task-form-<%= @post.id %>').hide();
+    });
+});
+
+/*
+$(document).click(function() {
+  $("div[id^='task-form-'").addClass('hidden');
+});
+
+$(document).click(function() {
+  $("div[class='container']").addClass('hidden');
+});
+
+*/

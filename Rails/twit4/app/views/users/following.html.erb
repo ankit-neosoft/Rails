@@ -1,0 +1,29 @@
+<div class="container">
+  <%= render '/components/sidebar_right'%>
+  <div class="col-sm-9">
+      <div class="panel panel-info">
+        <div class="panel-heading ">
+          <h3 class="panel-title">Following users</h3>
+        </div>
+        <div class="panel-body">
+        <% @users.following.each do |user| %>
+          <div class="col-sm-4 no-padding">
+          <div class="image-bg">
+            <center>
+              <div class="image-background">
+                <%= image_tag(user.avatar.url(:medium), width:150, height:150, class:'image-round') %>
+              </div>
+              <p><%= link_to user.name, user_path(user) %> <small>@<%= user.username %> <br></small></p>
+              <table style="width:70%">
+                <tr>
+                  <td><%= user.followers.count%> Followers</td>
+                  <td><%= user.following.count%>  Following</td>
+                </tr>
+              </table>
+            </center>
+          </div>
+          </div>
+        <% end %>
+      </div>
+      <%#= will_paginate @users.following %>
+</div>

@@ -1,0 +1,16 @@
+<div class="panel panel-info margin-bottom-zero">
+  <div class="panel-heading">
+    <h3 class="panel-title">Create a Tweet</h3>
+  </div>
+  <div class="panel-body">
+   <button type="button" style="display:none" id="close-button" class="close" data-dismiss="modal">&times;</button>
+    <%= form_for @post do |f| %>
+      <%= f.text_area :content, class: 'form-control', id:'tweet-textarea' %><br>
+      <div id="submit-hidden" class="" style="display:none">
+      <%= f.file_field :avatar, title: "Upload Image"%><br>
+      <%= f.submit "Tweet!" , class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+    
+  </div>
+</div>

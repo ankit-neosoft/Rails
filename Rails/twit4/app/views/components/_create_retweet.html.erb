@@ -1,0 +1,14 @@
+<div class="panel panel-danger " id="retweet-form">
+  <div class="panel-body hides">
+  <button type="button" class="close" id ="close-form"data-dismiss="modal">&times;</button>
+    <p>
+    <%= form_for(@retweet, url: retweets_path(retweet_id: @post.id), remote: true) do |f| %>
+      <%= f.text_area :content, class: 'form-control' %><br>
+      <%#= f.hidden_field :retweet_id, value: @post.id %>
+      <%#= f.file_field :avatar, title: "Upload Image"%><br>
+      <%= f.submit "Retweet!" , class: 'btn btn-primary' %>
+      <!-- <button id="hide">Hide</button> -->
+    <% end %>
+    </p>
+  </div>
+</div>
