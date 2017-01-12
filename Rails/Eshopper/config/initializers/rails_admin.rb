@@ -21,6 +21,16 @@ RailsAdmin.config do |config|
     end
   end
 
+config.model Picture do
+    list do
+      field :image, :carrierwave do
+        delete_method :image_delete     # don't forget to whitelist if you use :attr_accessible
+        cache_method :image_cache   
+      end
+      # field :title
+      # field :description
+    end
+  end
   # config.model 'Banner' do
   #   edit do
   #     field :image, :carrierwave

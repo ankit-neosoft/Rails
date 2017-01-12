@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111101229) do
+ActiveRecord::Schema.define(version: 20170112144125) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -40,12 +40,41 @@ ActiveRecord::Schema.define(version: 20170111101229) do
     t.string   "image"
   end
 
+  create_table "brand_categories", force: :cascade do |t|
+    t.integer  "brand_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "brand_categories", ["brand_id"], name: "index_brand_categories_on_brand_id"
+  add_index "brand_categories", ["category_id"], name: "index_brand_categories_on_category_id"
+
+  create_table "brands", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "category_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "parent_id"
   end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "image"
+  end
+
+  add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
