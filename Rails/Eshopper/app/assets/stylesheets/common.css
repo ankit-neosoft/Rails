@@ -11,3 +11,6 @@
 .form-signin input{
   margin-bottom: 10px;
 }
+.product_name_height{
+  min-height: 60px;
+}
