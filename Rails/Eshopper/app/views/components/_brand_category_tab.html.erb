@@ -16,24 +16,26 @@
   <div class="">
   <%if @category.present? %>
     <%# navigation_list.each_with_index do |subcategory, i|%>
-      <div class="" >
-      <% if @products.present? %>
-        <% @products.where(status: true).each do |product|%>
-          <div class="col-sm-3">
-            <div class="product-image-wrapper">
-              <div class="single-products">
-                <div class="productinfo text-center">
-                  <%if product.pictures.present?%>
-                    <%= image_tag product.pictures.first.image.url%>
-                  <% end %>
-                  <h2>Rs.<%= product.price%></h2>
-                  <p class="product_name_height"><%= product.name%></p>
-                  <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+      <div class="col-sm-12" >
+        <% if @products.present? %>
+          <% @products.shuffle.each do |product|%>
+            <div class="col-sm-3">
+              <div class="product-image-wrapper">
+                <div class="single-products">
+                  <div class="productinfo text-center">
+                    <%if product.pictures.present?%>
+                      <%= image_tag product.pictures.first.image.url, width:'184px', height:'245px'%>
+                    <% end %>
+                    <h2>&#8377; <%= product.price%></h2>
+                    <p class="product_name_height"><%= product.name%></p>
+                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <% end %> 
+          <% end %> 
+        <%else %>
+          <h2>Product not available</h2>
         <% end %>
       </div>
     <%# end %>

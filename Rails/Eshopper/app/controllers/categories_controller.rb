@@ -14,6 +14,8 @@ class CategoriesController < ApplicationController
     if params[:subcategory_id].present?
       @subcategory = Category.find(params['subcategory_id'])
       @products = @subcategory.products
+    else
+      @products = @category.products
     end
   end
 
