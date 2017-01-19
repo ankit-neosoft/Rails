@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116105651) do
+ActiveRecord::Schema.define(version: 20170119154700) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -58,6 +58,25 @@ ActiveRecord::Schema.define(version: 20170116105651) do
     t.boolean  "status"
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer  "quantity"
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cart_items", ["product_id"], name: "index_cart_items_on_product_id"
+  add_index "cart_items", ["user_id"], name: "index_cart_items_on_user_id"
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "quantity"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.boolean  "status"
@@ -65,6 +84,30 @@ ActiveRecord::Schema.define(version: 20170116105651) do
     t.datetime "updated_at", null: false
     t.integer  "parent_id"
   end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "quantity"
+    t.decimal  "amount"
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
+  add_index "order_items", ["product_id"], name: "index_order_items_on_product_id"
+
+  create_table "orders", force: :cascade do |t|
+    t.text     "shipping_address"
+    t.string   "status"
+    t.decimal  "sub_total"
+    t.decimal  "total"
+    t.integer  "user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "pictures", force: :cascade do |t|
     t.string   "name"

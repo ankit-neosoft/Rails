@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :order_items
+  resources :orders
+  resources :carts
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
@@ -8,7 +11,10 @@ Rails.application.routes.draw do
     resources :brands
   end
   resources :products
+  resource :cart, only: [:show]
+  resources :order_items, only: [:create, :update, :destroy]
   root 'home#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

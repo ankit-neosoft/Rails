@@ -14,3 +14,7 @@
 .product_name_height{
   min-height: 60px;
 }
+
+.cart_left_padding{
+  padding-left: 30px;
+}
