@@ -19,9 +19,10 @@
               <ul class="nav navbar-nav">
                 <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                 <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+                <li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
                 <li><%= link_to carts_path, class: "btn btn-success add-to-cart" do %>
-                      <i class="fa fa-shopping-cart">Cart<%= "#{current_order.order_items.size}" %></i>
+                      <i class="fa fa-shopping-cart">Cart(<%= OrderItem.all.count%>)<%#= "#{current_order.order_items.size}" %></i>
+                      
                     <% end %>
                 </li>
                 <% unless user_signed_in? %>
@@ -41,4 +42,3 @@
         </div>
       </div>
     </div><!--/header-middle-->
-  

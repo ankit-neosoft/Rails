@@ -8,7 +8,14 @@
 </head>
 <body>
   <%= render '/components/header'%>
-
+<% flash.each do |key, value| %>
+    <div class="alert  alert-<%= (key=="notice") ? "success": "danger" %>">
+      <center>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <%= value %>
+      </center>
+    </div>
+<% end %>
 <%= yield %>
 <%= render '/components/footer' %>
 </body>

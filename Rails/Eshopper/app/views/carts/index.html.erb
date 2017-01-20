@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 
 <section id="cart_items">
@@ -45,15 +45,18 @@
                 <td class="cart_product">
                   <%= image_tag order_item.product.pictures.first.image.url, width:'100px', height:'100px'%>
                 </td>
-                <td class="cart_description cart_left_padding">
-                  <h4 class="cart_left_padding"><%=link_to order_item.product.name%></h4>
+                <td class="cart_description ">
+                  <h5 class="cart_left_padding"><%=link_to order_item.product.name%></h5>
                 </td>
                 <td class="cart_price">
                   <p>&#8377;<%= order_item.product.price%></p>
                 </td>
                 <td class="cart_quantity">
                   <div class="cart_quantity_button">
+                  <%= form_for order_item  do |f|%>
                     <%= number_field_tag :quantity, order_item.quantity.to_i, class: "cart_quantity_input", min: 1 %>
+                    <%= f.submit "Update changes", class: "btn btn-default add-to-cart" %>
+                  <% end %>
                   </div>
                 </td>
                 <td class="cart_total">
@@ -63,7 +66,7 @@
                   <p class="cart_total_price">&#8377;<%= a* b%></p>
                 </td>
                 <td class="cart_delete">
-                <%= link_to order_item, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.name}' from your cart?" }, method: :delete, remote: true, class: "btn btn-danger cart_quantity_delete" } do %>
+                <%= link_to order_item, { data: { confirm: "Are you sure you wish to delete the product '#{order_item.product.name}' from your cart?" }, method: :delete, class: "cart_quantity_delete" } do %>
                   <i class="fa fa-times"></i>
                 <% end %>
                 </td>
