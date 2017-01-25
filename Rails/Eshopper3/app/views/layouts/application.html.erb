@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eshopper</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render '/components/header'%>
+<% flash.each do |key, value| %>
+    <div class="alert  alert-<%= (key=="notice") ? "success": "danger" %>">
+      <center>
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <%= value %>
+      </center>
+    </div>
+<% end %>
+<%= yield %>
+<%= render '/components/footer' %>
+</body>
+</html>
