@@ -1,4 +1,4 @@
-<section id="form"><!--form-->
+<section ><!--form-->
   <div class="container">
     <div class="row">
       <div class="col-sm-4 col-sm-offset-1">
@@ -30,20 +30,32 @@
         </div>
       </div>
 
-      <div class="col-sm-1">
+      <div class="col-sm-1 or_border">
         <h2 class="or">OR</h2>
       </div>
 
       <div class="col-sm-4">
-          <div class="signup-form"><!--sign up form-->
-            <h2>New User Signup!</h2>
-            <form action="#">
-              <input type="text" placeholder="Name"/>
-              <input type="email" placeholder="Email Address"/>
-              <input type="password" placeholder="Password"/>
-              <button type="submit" class="btn btn-default">Signup</button>
-            </form>
-          </div><!--/sign up form-->
+        <div class="social_login">
+          <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+            <div class="google_sign_in btn btn-primary btn-lg">
+              <i class="fa fa-google-plus"></i> 
+              <span>sign in with google</span>
+            </div>
+          <% end %>
+
+          <%= link_to user_facebook_omniauth_authorize_path do %>
+            <div class="facebook_sign_in btn btn-primary btn-lg">
+              <i class="fa fa-facebook"></i>
+              <span>sign in with facebook</span>
+            </div>
+          <% end %>
+
+          <%= link_to user_twitter_omniauth_authorize_path do %>
+            <div class="twitter_sign_in btn btn-primary btn-lg">
+              <i class="fa fa-twitter"></i>
+              <span>sign in with twitter</span>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>

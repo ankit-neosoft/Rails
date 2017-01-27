@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :carts
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  # devise_for :users
   # get 'home/index'
   #get '/categories/:category_id/brands/*id' => "brands#show"
   resources :categories do 
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   resources :cart_items
   # resource :cart, only: [:show]
   # resources :order_items, only: [:create, :update, :destroy]
+
   root 'home#index'
 
 

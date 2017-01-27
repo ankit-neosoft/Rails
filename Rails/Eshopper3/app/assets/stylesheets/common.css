@@ -47,7 +47,7 @@
 .button:hover{
   width: 85px !important;
   height: 35px !important;
-  background: #FDB45E !important;
+  background: #E0E0E0 !important;
   color: black !important;
 }
 
@@ -61,6 +61,43 @@
   width: 84px;
   height: 85px !important;
 }
+
+.social_login{
+  padding: 60px 40px 40px 0px;
+}
+
+.social_login a{
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.social_login a:hover{
+  color: white;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.google_sign_in{
+  background-color: #dc4b38 !important;
+  width: 100% !important;
+}
+
+.facebook_sign_in{
+  background-color: #596da2 !important;
+  width: 100% !important;
+}
+.twitter_sign_in{
+  background-color: #39b3d7 !important;
+  width: 100% !important;
+}
+
+.or_border{
+  margin-top: 70px;
+}
+/*.fa-google-plus{
+  text-transform: lowercase !important;
+}*/
 
 /*.cart_quantity_up{
   text-decoration: none

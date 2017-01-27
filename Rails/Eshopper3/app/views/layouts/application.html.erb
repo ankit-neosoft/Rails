@@ -8,15 +8,18 @@
 </head>
 <body>
   <%= render '/components/header'%>
-<% flash.each do |key, value| %>
-    <div class="alert  alert-<%= (key=="notice") ? "success": "danger" %>">
-      <center>
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <%= value %>
-      </center>
-    </div>
-<% end %>
-<%= yield %>
-<%= render '/components/footer' %>
+  <div class="flash">
+    <% flash.each do |key, value| %>
+      <div class="alert  alert-<%= (key=="notice") ? "success": "danger" %>">
+        <center>
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <%= value %>
+        </center>
+      </div>
+    <% end %>
+  </div>
+  <%= yield %>
+  <%= render '/components/footer' %>
+  <!-- <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: block;"><i class="fa fa-angle-up"></i></a> -->
 </body>
 </html>

@@ -4,7 +4,7 @@ class CartItemsController < ApplicationController
   # GET /cart_items
   # GET /cart_items.json
   def index
-    @cart_items = CartItem.all
+    @cart_items = current_user.cart_items.all
     @cart_items_total = current_user.cart_items.sum(:total) 
     @vat = 0.04 * @cart_items_total
     @grand_total = @cart_items_total + @vat
@@ -33,7 +33,7 @@ class CartItemsController < ApplicationController
     
     respond_to do |format|
       if @cart_item.save
-        format.html { redirect_to cart_items_path, notice: 'Cart item was successfully created.' }
+        format.html { redirect_to cart_items_path, notice: 'Item was successfully added.' }
         format.json { render :show, status: :created, location: @cart_item }
       else
         format.html { render :new }
@@ -74,10 +74,16 @@ class CartItemsController < ApplicationController
   # DELETE /cart_items/1
   # DELETE /cart_items/1.json
   def destroy
+    @cart_items = current_user.cart_items.all
     @cart_item.destroy
+    @cart_items_total = current_user.cart_items.sum(:total) 
+    @vat = 0.04 * @cart_items_total
+    @grand_total = @cart_items_total + @vat
+
     respond_to do |format|
       format.html { redirect_to cart_items_url, notice: 'Cart item was successfully removed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

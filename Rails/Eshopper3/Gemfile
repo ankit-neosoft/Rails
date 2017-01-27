@@ -57,3 +57,7 @@ gem 'awesome_print'
 gem 'table_print'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
+gem "omniauth-google-oauth2"
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'activerecord-session_store'
