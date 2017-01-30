@@ -7,14 +7,17 @@
       </ol>
     </div>
 
-    <div class="table-responsive cart_info">
-      <table class="table table-condensed">
+    <div class="table-responsive cart_info" >
+      <table class="table table-condensed " id="complete-cart-items">
         <col width="13%">
         <col width="27%">
         <col width="7%">
         <col width="20%">
         <col width="12%">
         <col width="8%">
+        <center><p class="collapse">
+          There are no items in your shopping cart.  Please <%= link_to "go back", root_path %> and add some items to your cart.
+        </p></center>
         <% if @cart_items.size == 0 %>
           <p class="text-center">
             There are no items in your shopping cart.  Please <%= link_to "go back", root_path %> and add some items to your cart.

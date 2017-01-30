@@ -22,9 +22,9 @@
                 <!-- <li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li> -->
                 <li><%= link_to cart_items_path, class: "" do %>
                       <i class="fa fa-shopping-cart"> Cart
-                        <% if @cart_items.present? %>
-                          <span id="cart_counts">(<%= @cart_items.count%>)</span>
-                        <% end %>
+                        <span id="cart_counts">
+                          <% if @cart_items.present? %>(<%= @cart_items.count%>)<% end %>
+                        </span>
                       </i>
                     <% end %>
                 </li>
