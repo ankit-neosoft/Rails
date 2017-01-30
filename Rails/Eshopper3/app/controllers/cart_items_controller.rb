@@ -5,9 +5,15 @@ class CartItemsController < ApplicationController
   # GET /cart_items.json
   def index
     @cart_items = current_user.cart_items.all
-    @cart_items_total = current_user.cart_items.sum(:total) 
+    @cart_items_total = current_user.cart_items.sum(:total)
     @vat = 0.04 * @cart_items_total
-    @grand_total = @cart_items_total + @vat
+    if @cart_items_total < 500
+      @shipping_cost = 40.to_f
+      @grand_total = @cart_items_total + @vat + @shipping_cost
+    else
+      @shipping_cost = 'Free'
+      @grand_total = @cart_items_total + @vat
+    end
     @cart_item = CartItem.new
   end
 
@@ -58,7 +64,13 @@ class CartItemsController < ApplicationController
     @cart_item.save
     @cart_items_total = current_user.cart_items.sum(:total) 
     @vat = 0.04 * @cart_items_total
-    @grand_total = @cart_items_total + @vat
+    if @cart_items_total < 500
+      @shipping_cost = 40.to_f
+      @grand_total = @cart_items_total + @vat + @shipping_cost
+    else
+      @shipping_cost = 'Free'
+      @grand_total = @cart_items_total + @vat
+    end
 
     respond_to do |format|
       if @cart_item.update(cart_update_params)

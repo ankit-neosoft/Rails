@@ -15,14 +15,14 @@ $("#1").removeClass('in')
 
 
 $(document).ready(function(){
-  $(".alert" ).fadeOut(5000)
+  $(".alert" ).fadeOut(12000)
 });
 $(document).ready(function(){
-  $(".alert-success" ).fadeOut(5000)
+  $(".alert-success" ).fadeOut(12000)
 });
-$(document).ready(function(){
-  $(".alert-danger" ).fadeOut(5000)
-});
+// $(document).ready(function(){
+//   $(".alert-danger" ).fadeOut(5000)
+// });
 
 
 
