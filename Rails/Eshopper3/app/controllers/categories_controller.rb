@@ -19,7 +19,10 @@ class CategoriesController < ApplicationController
     else
       @products = @category.products
     end
-    @order_items = current_order.order_items
+    
+    if user_signed_in?
+      @cart_items = current_user.cart_items.all
+    end
   end
 
   # GET /categories/new

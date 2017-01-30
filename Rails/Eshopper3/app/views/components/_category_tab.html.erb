@@ -7,7 +7,7 @@
     <% end %>
       <% navigation_list.order('name ASC').where(status: true).each_with_index do |subcategory, i|%>
         <li class= <%= 'active' if params[:subcategory_id].to_s == subcategory.id.to_s %> >
-          <%= link_to subcategory.name.gsub(/:.+:/,''), category_path(id: @category.id, subcategory_id: subcategory.id) %>
+          <%= link_to subcategory.name.gsub(/:.+:/,''), category_path(id: @category.id, subcategory_id: subcategory.id)%>
         </li>
       <% end %>
     <% end %>
@@ -26,29 +26,16 @@
                   <div class="single-products">
                     <div class="productinfo text-center">
                       <%= link_to product_path(product) do %>
-                        <div>
-                          <%if product.pictures.present?%>
-                            <%= image_tag product.pictures.first.image.url, width:'184px', height:'245px'%>
-                          <% end %>
+                        <%if product.pictures.present?%>
+                          <%= image_tag product.pictures.first.image.url, width:'184px', height:'245px'%>
+                        <% end %>
                           <h2>&#8377; <%= product.price%></h2>
                           <p class="product_name_height"><%= product.name%></p>
-                        </div>
                       <% end %>
-                        <% if @cart_items.present? && @cart_items.pluck('product_id').include?(product.id) %>
-                          <%= link_to cart_items_path, class: "btn btn-default bg-orange go-to-cart" do %>
-                            <i class="fa fa-shopping-cart"> Go to cart</i>
-                          <% end %>
-                        <% else %>
-                          <%= form_for @cart_item do |f|%>
-                            <div class="input-group-btn">
-                              <%= f.hidden_field :product_id, value: product.id %>
-                              <%= f.hidden_field :quantity, value: 1 %>
-                              <%= f.submit 'Add to cart', class: "btn btn-default add-to-cart" do %>
-                                <i class="fa fa-shopping-cart"></i>
-                              <% end %>
-                            </div>
-                          <% end %>
-                        <% end %>
+                      
+                      <div id="product-cart-status-<%= product.id%>">
+                        <%= render partial:'/cart_items/product_cart_status', locals:{product: product}%>
+                      </div>
                     </div>
                   </div>
                 </div>

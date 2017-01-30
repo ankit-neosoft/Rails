@@ -61,7 +61,8 @@
               <p><b>Availability:</b> In Stock</p>
               <p><b>Condition:</b> New</p>
               <p><b>Brand:</b> <%= @product.brand.name %></p>
-              <a href=""><%= image_tag "/assets/product-details/share.png" %></a>
+              <%= social_share_button_tag("Eshopper") %>
+              <!-- <a href=""><%#= image_tag "/assets/product-details/share.png" %></a> -->
             </div><!--/product-information-->
           </div>
         </div><!--/product-details-->

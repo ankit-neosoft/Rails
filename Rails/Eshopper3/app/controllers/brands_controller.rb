@@ -15,6 +15,11 @@ class BrandsController < ApplicationController
     @category = Category.find(cat_id)
     @brand = Brand.find(params[:id])
     @products = @category.products.where(brand_id: @brand.id)
+    @cart_item = CartItem.new
+
+    if user_signed_in?
+      @cart_items = current_user.cart_items.all
+    end
   end
 
   # GET /brands/new

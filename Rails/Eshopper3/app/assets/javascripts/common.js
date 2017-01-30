@@ -25,6 +25,14 @@ $(document).ready(function(){
 });
 
 
+
+
+// function show_brand(id){
+//   debugger
+//   $('#'+id).addClass('in')
+// }
+
+
 // $(document).ready(function(){
 // $(".category").onClickremoveClass('in')
 // });

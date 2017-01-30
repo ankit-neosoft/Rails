@@ -95,6 +95,29 @@
 .or_border{
   margin-top: 70px;
 }
+
+#brand-navigation ul li.active-link>a{
+        background: #f1d74c;
+        color: red;
+        text-decoration: underline;
+        border-bottom: 1px solid blue
+    }
+
+.brand_highlight{
+  text-decoration: underline;
+  /*color: #FE980F;
+  text-decoration-color: #FE980F;*/
+}
+
+/*.social-share-button-facebook {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url("/social/facebook.png") no-repeat;
+}*/
+
+
+
 /*.fa-google-plus{
   text-transform: lowercase !important;
 }*/

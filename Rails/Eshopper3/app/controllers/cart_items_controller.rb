@@ -28,13 +28,15 @@ class CartItemsController < ApplicationController
   # POST /cart_items
   # POST /cart_items.json
   def create
+    @cart_items = current_user.cart_items.all
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.user_id = current_user.id
-    
+    @product = @cart_item.product
     respond_to do |format|
       if @cart_item.save
         format.html { redirect_to cart_items_path, notice: 'Item was successfully added.' }
         format.json { render :show, status: :created, location: @cart_item }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @cart_item.errors, status: :unprocessable_entity }

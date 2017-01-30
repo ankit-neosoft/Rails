@@ -61,3 +61,4 @@ gem "omniauth-google-oauth2"
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'activerecord-session_store'
+gem 'social-share-button'
